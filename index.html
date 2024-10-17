@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>That's my page</title>
@@ -8,19 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-<section id="header">
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 bg-color-white ">
-            <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto  text-decoration-none">
-                <img src="images/totodile.svg" class="bi me-2 rounded-circle" width="100" height="100" alt="">
-                <span class="fs-6" style="color: white;">® K.Moonshard</span></a>
-
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="porfolio.html" class="nav-link active" aria-current="page">Home</a></li>
-            </ul>
-        </header>
-    </div>
-</section>
+    <section id="header">
+        <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 bg-color-white fill">
+                <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto  text-decoration-none">
+                    <img src="images/totodile.svg" class="bi me-2 rounded-circle" width="100" height="100" alt="">
+                    <span class="fs-6" style="color: white;">® K.Moonshard</span></a>
+    
+                <ul class="nav nav-pills">
+                    <li><button type="button" class="header.btn" id="home">Home</button></li>
+                    <li><button type="button" class="header.btn" id="server">My server</button></li>
+                </ul>
+            </header>
+        </div>
+    </section>
 <section id="server">
     <div class="px-4 py-5 mb-5 text-center">
         <a href="https://discord.gg/Hddb6VCq"> <svg width="100px" height="100px" viewBox="0 -28.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
@@ -51,7 +52,7 @@
     </div>
 </section>
 <section id="member">
-    <<div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -489,6 +490,106 @@ c126 -63 257 -106 366 -120 54 -7 115 5 115 23 0 7 -54 37 -119 67 -240 108
     </div>
 </div>
 </section>
+<section id="request-to-server">
+    <div class="container">
+        <ul id="gameList">
+        <li>
+            <img src="images/Dota Team Fight Tactics.svg">
+            <input type="checkbox" id="dota2">
+            <label for="dota2">Dota 2</label>
+        </li>
+        <li>
+            <img src="images/CSGO 2 logo.svg">
+            <input type="checkbox" id="csgo">
+            <label for="csgo">CS:GO</label>
+        </li>
+        <li>
+            <img src="images/Minecraft emoji simple.svg">
+            <input type="checkbox" id="minecraft">
+            <label for="minecraft">Minecraft</label>
+        </li>
+        <li>
+            <img src="images/Terraria icon.svg">
+            <input type="checkbox" id="terraria">
+            <label for="terraria">Terraria</label>
+        </li>
+        <li>
+            <img src="images/Apex Legends icon.svg">
+            <input type="checkbox" id="apex">
+            <label for="apex">Apex Legends</label>
+        </li>
+        <li>
+            <img src="images/Pirates icon.svg">
+            <input type="checkbox" id="seaOfThieves">
+            <label for="seaOfThieves">Sea of Thieves</label>
+        </li>
+    </ul>
+        <h2>Request List</h2>
+        <form id="requestForm">
+            <label for="gameName">Game Name:</label>
+            <input type="text" id="gameName" name="gameName" required />
+            <label for="nickname">Nickname:</label>
+            <input type="text" id="nickname" name="nickname" required />
+            <label for="adminMessage">Message for Admin:</label>
+            <textarea id="adminMessage" name="adminMessage" required></textarea>
+            <button type="submit">Send to Server</button>
+        </form>
+</section>
+<section id="sort">
+    <h1 id="sortTitle">Number Sorting Tool</h1>
+    <div class="input-group" id="inputGroup">
+        <input type="text" id="numbersInput" placeholder="Enter numbers separated by commas">
+        <select id="sortOrder">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <button id="sortButton">Sort</button>
+    </div>
+    <div class="result" id="sortedResult" style="color: #fdf0d5;"></div>
+    <script>document.getElementById("sortButton").addEventListener("click", function() {
+        const numbersInput = document.getElementById("numbersInput").value;
+        const sortOrder = document.getElementById("sortOrder").value;
+        const sortedResult = document.getElementById("sortedResult");
+        const numbersArray = numbersInput.split(",").map(num => num.trim());
+        if (numbersArray.some(num => isNaN(num) || num === "")) {
+            sortedResult.textContent = "Please enter valid numbers separated by commas.";
+            return;
+        }
+        const validNumbers = numbersArray.map(Number);
+    
+        if (sortOrder === "asc") {
+            validNumbers.sort((a, b) => a - b);
+        } else {
+            validNumbers.sort((a, b) => b - a);
+        }
+        sortedResult.textContent = `Sorted Numbers: ${validNumbers.join(", ")}`;
+    });</script>
+</section>
+<section id="calculator">
+    <div class="calculator">
+        <h1>Calculator</h1>
+        <input class="input-calc" type="number" id="num1" placeholder="Enter first number">
+        <input class="input-calc" type="number" id="num2" placeholder="Enter second number">
+        <select class="input-calc"id="operation">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+            <option value="modulus">%</option>
+            <option value="power">^</option>
+        </select>
+        <button onclick="calculate()" class="btn-calc">Calculate</button>
+        <div class="result-calc" id="result">Result will appear here</div>
+    </div>
+</section>
+<section id="tax-calc">
+    <div class="tax-calculator">
+        <h1>Car Tax Calculator</h1>
+        <input type="number" class="input-tax-calc" id="carPrice" placeholder="Enter car price in $" min="0">
+        <button class="btn-tax-calc" onclick="calculateTax()">Calculate Tax</button>
+        <div class="result-tax-calc" id="taxResult">Tax will appear here</div>
+    </div>
+</section>
 <section id="footer">
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -501,5 +602,7 @@ c126 -63 257 -106 366 -120 54 -7 115 5 115 23 0 7 -54 37 -119 67 -240 108
         </footer>
     </div>
 </section>
+
+<script src="script.js"></script>
 </body>
 </html>
